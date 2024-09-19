@@ -1,9 +1,9 @@
 class User:
-    def __init__(self, nome, conta, senha, saldo):
+    def __init__(self, nome, conta, senha, saldo=0):
         self.nome = nome
         self.conta = conta
         self.__senha = senha
-        self.__saldo = saldo
+        self.__saldo = float(saldo)
 
     def get_nome(self):
         return self.nome
