@@ -15,6 +15,9 @@ class User:
         return self.conta
 
     # --- Métodos de senha ---
+    def get_senha(self):
+        return self.__senha
+
     def set_senha(self, nova_senha):
         if len(nova_senha) == 6:
             if nova_senha.isdigit():
@@ -28,7 +31,7 @@ class User:
 
     # --- Métodos de saldo ---
     def get_saldo(self):
-        return self.__saldo
+        return f"{self.__saldo:.2f}"
 
     def add_saldo(self, add_saldo):
         if type(add_saldo) == float:
