@@ -22,6 +22,7 @@ class User:
         if len(nova_senha) == 6:
             if nova_senha.isdigit():
                 self.__senha = nova_senha
+                return
             raise ValueError("A senha contém caracteres inválidos.")
 
         raise ValueError("A senha deve conter 6 números.")
@@ -37,6 +38,7 @@ class User:
         if type(add_saldo) == float:
             if add_saldo > 0:
                 self.__saldo += add_saldo
+                return
             elif add_saldo == 0:
                 raise ValueError("O valor não pode ser 0.")
 
@@ -48,6 +50,7 @@ class User:
         if type(dec_saldo) == float:
             if dec_saldo > 0:
                 self.__saldo -= dec_saldo
+                return
             elif dec_saldo == 0:
                 raise ValueError("O valor não pode ser 0.")
 
