@@ -27,8 +27,8 @@ class User:
 
         raise ValueError("A senha deve conter 6 números.")
 
-    def autenticar(self, senha):
-        return self.__senha == senha
+    def autenticar(self, conta, senha):
+        return self.conta == conta and self.__senha == senha
 
     # --- Métodos de saldo ---
     def get_saldo(self):

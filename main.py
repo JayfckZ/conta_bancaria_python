@@ -3,14 +3,14 @@ from time import sleep
 from models import User
 
 def menu_principal():
-    print("\n--- Menu Principal ---")
+    print("\n========== Menu Principal ==========")
     print("1. Cadastrar novo usuário")
     print("2. Login")
     print("3. Sair")
     return input("Selecione uma opção: ")
 
 def menu_bancario(usuario):
-    print("\n--- Menu Bancário ---")
+    print("\n========== Menu Bancário ==========")
     print(f"Nome: {usuario.get_nome()}")
     print(f"Saldo: {usuario.get_saldo()}")
     print("\n1. Depositar")
@@ -39,8 +39,9 @@ while True:
         conta = input("Conta: ")
         senha = input("Senha: ")
 
+        i = 0
         for user in usuarios:
-            if user.get_conta() == conta and user.get_senha() == senha:
+            if user.autenticar(conta, senha):
                 print(f"Bem-vindo, {user.get_nome()}")
                 
                 logado = True
@@ -78,13 +79,17 @@ while True:
                         print("Opção não encontrada. Tente novamente.")
 
                     salvar_dados(usuarios)
+                break
+
             else:
-                print("\033[33;1mConta ou senha inválidos.\033[m")
-                sleep(2.5)
+                i += 1
+                if i == len(usuarios):
+                    print("\033[33;1mConta ou senha inválidos.\033[m")
+                    sleep(2.5)
 
     elif opcao == "3":
         salvar_dados(usuarios)
-        print("Sessão encerrada.")
+        print("\nSessão encerrada.")
         break
 
     else:
