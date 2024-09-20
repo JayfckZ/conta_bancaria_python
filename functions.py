@@ -55,3 +55,10 @@ def valida_senha():
             print("\033[31;1mA senha deve conter exatamente 6 dígitos.\033[m\n")
         except:
             print("\033[31;1mA senha deve conter exatamente 6 dígitos.\033[m\n")
+
+def encontra_conta(usuarios, conta):
+    for user in usuarios:
+        if conta == user.get_conta():
+            return user
+    
+    return None

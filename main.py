@@ -1,4 +1,4 @@
-from functions import carregar_dados, salvar_dados, gerar_conta, valida_senha
+from functions import carregar_dados, salvar_dados, gerar_conta, valida_senha, encontra_conta
 from time import sleep
 from user import User
 
@@ -62,7 +62,7 @@ while True:
                     elif opcao2 == "2":
                         try:
                             dec_saldo = float(input("Valor a depositar: "))
-                            print("Realizando transferência...")
+                            print("Realizando saque...")
                             sleep(2.5)
                             user.dec_saldo(dec_saldo)
                             print(f"Saldo atual: {user.get_saldo()}")
@@ -76,11 +76,8 @@ while True:
                             
                             if conta_transf == user.get_conta():
                                 raise ValueError("Não é possível realizar transferências para sua própria conta.")
-                            user_encontrado = False
-                            for find_user in usuarios:
-                                if conta_transf == find_user.get_conta():
-                                    user_encontrado = find_user
-                                    
+                            
+                            user_encontrado = encontra_conta(usuarios, conta_transf)    
 
                             if not user_encontrado:
                                 raise ValueError("Conta não encontrada.")
