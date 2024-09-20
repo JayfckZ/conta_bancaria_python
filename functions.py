@@ -1,7 +1,7 @@
 import csv
 import os
 import random
-from models import User
+from user import User
 
 
 def salvar_dados(usuarios, arquivo="usuarios.csv"):

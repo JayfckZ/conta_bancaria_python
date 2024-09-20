@@ -1,6 +1,6 @@
 from functions import carregar_dados, salvar_dados, gerar_conta, valida_senha
 from time import sleep
-from models import User
+from user import User
 
 def menu_principal():
     print("\n========== Menu Principal ==========")
@@ -33,7 +33,7 @@ while True:
         usuarios.append(usuario)
         salvar_dados(usuarios)
 
-        print(f"Conta criada para {nome}. Nº de Conta: {conta}")
+        print(f"\n\nConta criada para {nome}. Nº de Conta: \033[33;1m{conta}\033[m")
     
     elif opcao == "2":
         conta = input("Conta: ")
@@ -74,6 +74,8 @@ while True:
                         try:
                             conta_transf = input("Digite a conta para qual deseja transferir: ")
                             
+                            if conta_transf == user.get_conta():
+                                raise ValueError("Não é possível realizar transferências para sua própria conta.")
                             user_encontrado = False
                             for find_user in usuarios:
                                 if conta_transf == find_user.get_conta():
