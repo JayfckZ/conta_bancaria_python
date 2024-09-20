@@ -48,7 +48,9 @@ class User:
 
     def dec_saldo(self, dec_saldo):
         if type(dec_saldo) == float:
-            if dec_saldo > 0:
+            if dec_saldo > self.__saldo:
+                raise ValueError("Saldo insuficiente.")
+            elif dec_saldo > 0:
                 self.__saldo -= dec_saldo
                 return
             elif dec_saldo == 0:

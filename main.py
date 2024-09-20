@@ -70,6 +70,30 @@ while True:
                             print(f"\033[31;1mErro: {e}\033[m")
                             sleep(2.5)
 
+                    elif opcao2 == "3":
+                        try:
+                            conta_transf = input("Digite a conta para qual deseja transferir: ")
+                            
+                            user_encontrado = False
+                            for find_user in usuarios:
+                                if conta_transf == find_user.get_conta():
+                                    user_encontrado = find_user
+                                    
+
+                            if not user_encontrado:
+                                raise ValueError("Conta não encontrada.")
+
+                            saldo_transf = float(input("Digite o valor a transferir: "))
+                            print("Realizando transferência...")
+                            sleep(2.5)
+                            user.dec_saldo(saldo_transf)
+                            user_encontrado.add_saldo(saldo_transf)
+                            print(f"\033[32;1mTransferência realizada com sucesso!\033[m")
+                            sleep(2.5)
+                        except ValueError as e:
+                            print(f"\033[31;1mErro: {e}\033[m")
+                            sleep(2.5)
+
                     elif opcao2 == "4":
                         print("Saindo...")
                         sleep(2.5)
