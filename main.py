@@ -82,13 +82,18 @@ while True:
                             if not user_encontrado:
                                 raise ValueError("Conta não encontrada.")
 
-                            saldo_transf = float(input("Digite o valor a transferir: "))
-                            print("Realizando transferência...")
-                            sleep(2.5)
-                            user.dec_saldo(saldo_transf)
-                            user_encontrado.add_saldo(saldo_transf)
-                            print(f"\033[32;1mTransferência realizada com sucesso!\033[m")
-                            sleep(2.5)
+                            print(f"Transferindo para: {user_encontrado.get_nome()}")
+                            saldo_transf = float(input("Digite o valor a transferir (0 para cancelar): "))
+                            if saldo_transf == 0:
+                                print("\033[31;1mCancelando...\033[m")
+                                sleep(1.5)
+                            else:
+                                print("Realizando transferência...")
+                                sleep(2.5)
+                                user.dec_saldo(saldo_transf)
+                                user_encontrado.add_saldo(saldo_transf)
+                                print(f"\033[32;1mTransferência realizada com sucesso!\033[m")
+                                sleep(2.5)
                         except ValueError as e:
                             print(f"\033[31;1mErro: {e}\033[m")
                             sleep(2.5)
